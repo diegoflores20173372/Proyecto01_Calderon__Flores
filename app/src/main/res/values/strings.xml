@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Proyecto01_Calderon__Flores</string>
+    <string name="title_activity_detail_animal_extinction">DetailAnimalExtinction</string>
+    <string name="title_activity_animations_animals">AnimationsAnimals</string>
+</resources>
