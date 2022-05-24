@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
@@ -22,11 +24,21 @@ class DetailAnimalExtinction : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val context = LocalContext.current
+            val intent = (context as DetailAnimalExtinction).intent
+            val speciesId = intent.getIntExtra("speciesId", -1)
             Proyecto01_Calderon__FloresTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                var speciesColor = MaterialTheme.colors.background
+                when (speciesId) {
+                    0 -> speciesColor = Brown864
+                    1 -> speciesColor = Green
+                    2 -> speciesColor = Gray
+                    3 -> speciesColor = Skyblue
+                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(speciesColor)
                 ) {
                     ListAnimalContainer()
                 }
@@ -71,15 +83,16 @@ fun DefaultPreview2() {
     val speciesId = intent.getIntExtra("speciesId", -1)
     Proyecto01_Calderon__FloresTheme {
         var speciesColor = MaterialTheme.colors.background
-        when(speciesId){
+        when (speciesId) {
             0 -> speciesColor = Brown864
             1 -> speciesColor = Green
             2 -> speciesColor = Gray
             3 -> speciesColor = Skyblue
         }
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = speciesColor
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(speciesColor)
         ) {
             ListAnimalContainer()
         }
