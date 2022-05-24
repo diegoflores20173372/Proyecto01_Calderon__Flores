@@ -34,11 +34,12 @@ import kotlin.math.roundToInt
 
 @Composable
 fun SwipeableCard(
-    dataSource: List<Int>
+    dataSource: List<String>
 ) {
     val visibleCard: Int = StrictMath.min(3, dataSource.size)
     val scope = rememberCoroutineScope()
     val firstCard = remember { mutableStateOf(0) }
+    var cont = 6
     val offset: Animatable<Offset, AnimationVector2D> = remember {
         Animatable(
             Offset(0f, 0f),
@@ -81,7 +82,11 @@ fun SwipeableCard(
 
             CardItem(
                 modifier = cardModifier,
-                cardIndex = if (index == 0) firstCard.value else firstCard.value + 1
+                cardIndex = if (firstCard.value==dataSource.size) {
+                    dataSource[firstCard.value]
+                }  else {
+                    dataSource[firstCard.value+1]
+                }
             )
         }
     }

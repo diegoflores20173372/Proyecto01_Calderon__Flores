@@ -19,7 +19,7 @@ import com.danp_labs.proyecto01_calderon__flores.Constants.normalElevation
 @Composable
 fun CardItem(
     modifier: Modifier = Modifier,
-    cardIndex: Int
+    cardIndex: String
 ) {
     Card(
         modifier = modifier,
@@ -37,7 +37,8 @@ fun CardItem(
                 style = TextStyle(
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
-                    fontSize = 40.sp
+                    fontSize = 30.sp
+
                 )
             )
         }

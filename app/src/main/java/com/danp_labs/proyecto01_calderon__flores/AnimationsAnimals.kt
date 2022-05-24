@@ -42,7 +42,6 @@ class AnimationsAnimals : ComponentActivity() {
 fun AnimationAnimalsContainer(name: String) {
     val context = LocalContext.current
 
-
     Column {
         Button(onClick = {
             val intent = Intent(context, DetailAnimalExtinction::class.java)
@@ -56,9 +55,29 @@ fun AnimationAnimalsContainer(name: String) {
                 .padding(20.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
-            SwipeableCard(
-                dataSource = (0..10).map { 0 }.toList()
-            )
+            if(true){
+                //DATOS CURIOSOS MAMIFEROS
+                SwipeableCard(
+                    dataSource = listOf("Aproximadamente al día de hoy viven unos 25.000 a 40.000 osos polares en el Ártico", "los lémures viven en los arboles desde su nacimiento, son sociables y viven en familias de hasta 15 miembros", "La piel del lince varia de color de acuerdo al clima donde vivan", "Los ajolotes solo viven en el agua!")
+                )
+            }
+            else if(0>1){
+                //DATOS CURIOSOS REPTILES
+                SwipeableCard(
+                    dataSource = listOf("La longitud de la iguana azul suele ser de 1,5 metros", "La tortuga de pantano es carnìvora en sus primeros años de vida luego se vuelve herbivora", "Los Geckos son los unicos animales que pueden vocalizar")
+                )
+            } else if(0>2){
+                //DATOS CURIOSOS AVES
+                SwipeableCard(
+                    dataSource = listOf("Los cóndores adultos muestran sus estados de ánimo a través de cambios de color en la piel.", " El kakapo puede alcanzar de 58 a 64 cm de altura y de 1 a 4 kg de peso.", "El águila monera es la mayor rapaz de las selvas de Filipinas y una de las especies tropicales de águila más grandes", "El colibrí de Arica es la única que posee un pico tan largo y delgado, y que es capaz de volar hacia atrás")
+                )
+            }else if(0>3){
+                //DATOS CURIOSOS PECES
+                SwipeableCard(
+                    dataSource = listOf("El atún rojo nada a velocidades medias de 5,9 km/h y una máxima de entre 13 y 40 km/h.", "El tiburon ballena nada lentamente pero migra grandes distancias. ", "tan sólo en los últimos 14 años se considera que la especie del pez gato gigante ha disminuido en un 80%")
+                )
+            }
+
 
         }
 
