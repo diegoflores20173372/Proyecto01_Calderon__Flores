@@ -50,6 +50,7 @@ fun SwipeableCard(
         durationMillis = 150,
         easing = LinearEasing
     )
+
     fun rearrangeForward() {
         if (firstCard.value == dataSource.size - 1) {
             firstCard.value = 0
@@ -79,14 +80,9 @@ fun SwipeableCard(
                     rearrangeBackward = { rearrangeBackward() },
                     animationSpec = animationSpec
                 )
-
             CardItem(
                 modifier = cardModifier,
-                cardIndex = if (firstCard.value==dataSource.size) {
-                    dataSource[firstCard.value]
-                }  else {
-                    dataSource[firstCard.value+1]
-                }
+                cardIndex = dataSource[firstCard.value]
             )
         }
     }
@@ -160,13 +156,11 @@ fun makeCardModifier(
                     offset.snapTo(dragOffset)
                     change.consumePositionChange()
                     val x = when {
-
                         offset.value.x > 250 -> size.width.toFloat()
                         offset.value.x < -250 -> -size.width.toFloat()
                         else -> 0f
                     }
                     val y = when {
-
                         offset.value.y > 250 -> size.height.toFloat()
                         offset.value.y < -250 -> -size.height.toFloat()
                         else -> 0f
