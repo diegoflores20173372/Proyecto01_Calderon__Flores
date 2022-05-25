@@ -27,8 +27,7 @@ class AnimationsAnimals : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
-                    AnimationAnimalsContainer("Android")
+                    AnimationAnimalsContainer()
                 }
             }
         }
@@ -36,17 +35,19 @@ class AnimationsAnimals : ComponentActivity() {
 }
 
 @Composable
-fun AnimationAnimalsContainer(name: String) {
+fun AnimationAnimalsContainer() {
     val context = LocalContext.current
     val intent = (context as AnimationsAnimals).intent
     val speciesId = intent.getIntExtra("idSpecies", -1)
     Column (
+        modifier = Modifier.padding(0.dp, 130.dp, 0.dp, 0.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
-            val intent = Intent(context, DetailAnimalExtinction::class.java)
-            context.startActivity(intent)
+            val intent3 = Intent(context, DetailAnimalExtinction::class.java)
+            intent3.putExtra("speciesId", speciesId)
+            context.startActivity(intent3)
         }) {
             Text("Regresar a Detalles de Animales")
         }
@@ -78,18 +79,14 @@ fun AnimationAnimalsContainer(name: String) {
                     dataSource = listOf("El atún rojo nada a velocidades medias de 5,9 km/h y una máxima de entre 13 y 40 km/h.", "El tiburon ballena nada lentamente pero migra grandes distancias. ", "Tan sólo en los últimos 14 años se considera que la especie del pez gato gigante ha disminuido en un 80%")
                 )
             }
-
-
         }
-
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
     Proyecto01_Calderon__FloresTheme {
-        AnimationAnimalsContainer("Android")
+        AnimationAnimalsContainer()
     }
 }
