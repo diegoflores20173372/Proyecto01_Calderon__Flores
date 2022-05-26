@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -15,18 +16,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.danp_labs.proyecto01_calderon__flores.ui.theme.Proyecto01_Calderon__FloresTheme
+import com.danp_labs.proyecto01_calderon__flores.ui.theme.*
 
 class AnimationsAnimals : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
+            val context = LocalContext.current
+            val intent = (context as AnimationsAnimals).intent
+            val speciesId = intent.getIntExtra("idSpecies", -1)
             Proyecto01_Calderon__FloresTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
+                var speciesColor = MaterialTheme.colors.background
+                when (speciesId) {
+                    0 -> speciesColor = Brown864
+                    1 -> speciesColor = Green
+                    2 -> speciesColor = Gray
+                    3 -> speciesColor = Skyblue
+                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(speciesColor)
+                )  {
                     AnimationAnimalsContainer()
                 }
             }
@@ -86,7 +98,24 @@ fun AnimationAnimalsContainer() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
+    val context = LocalContext.current
+    val intent = (context as AnimationsAnimals).intent
+    val speciesId = intent.getIntExtra("idSpecies", -1)
     Proyecto01_Calderon__FloresTheme {
-        AnimationAnimalsContainer()
+        var speciesColor = MaterialTheme.colors.background
+        when (speciesId) {
+            0 -> speciesColor = Brown864
+            1 -> speciesColor = Green
+            2 -> speciesColor = Gray
+            3 -> speciesColor = Skyblue
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(speciesColor)
+        )
+        {
+            AnimationAnimalsContainer()
+        }
     }
 }
